@@ -38,4 +38,5 @@ gem 'capistrano', group: :development
 # To use debugger
 # gem 'debugger'
 
-gem 'devise'
+gem 'devise', github: 'idl3/devise', branch: 'rails4'
+#gem 'devise', github: 'plataformatec/devise'
