@@ -44,4 +44,4 @@ gem 'capistrano', group: :development
 # gem 'debugger'
 
 gem 'devise', github: 'idl3/devise', branch: 'rails4'
-#gem 'devise', github: 'plataformatec/devise'
+gem 'ember-rails'
