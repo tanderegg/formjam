@@ -1,1 +1,0 @@
-FJApp = Ember.Application.create();

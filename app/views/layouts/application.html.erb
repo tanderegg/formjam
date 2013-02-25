@@ -20,12 +20,23 @@
 	
 	<!-- Included JS Files  -->
 	<%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "templates/index" %>
   
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div id="wrapper" class="sixteen columns centered">
-    <%= yield %>
+  <div id="wrapper">
+    <header id="site-header">
+        <div id="site-header-content">
+            <h1>Formjam<h1>
+        </div>
+    </header>
+
+    <div id="content">
+        <div id="content-wrapper" class="sixteen columns">
+            <%= yield %>
+        </div>
+    </div>
   </div>
 </body>
 </html>

@@ -8,7 +8,82 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require_self
  *= require foundation_and_overrides
+ *= require_self
  *= require_tree .
  */
+
+$primary-color: #2BA6CB;
+
+@font-face {
+    font-family: VeggieBurgerBold;
+    src: url('../fonts/VeggiBol.otf');
+}
+
+html {
+    font-family: Georgia;
+}
+
+html, body, div, header, h1, h2, h3, h4, h5, aside, ul, li {
+    margin: 0;
+    padding: 0;
+    color: inherit;
+    font-famliy: inherit;
+}
+
+header#site-header {
+    background: $primary-color;
+    color: #FFF;
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid #555;
+    box-shadow: 0px 2px 3px #CCC;
+    font-family: VeggieBurgerBold;
+
+    #site-header-content {
+        width: 960px;
+        margin: 0 auto;
+        padding: 0.5em 0;
+
+        a {
+            color: #FFF;
+        }
+
+        h1 {
+            display: inline-block;
+        }
+
+        nav#actions {
+            float: right;
+
+            ul {
+                list-style-type: none;
+                display: inline-block;
+
+                li {
+                    display: inline;
+                    font-size: 150%;
+                    margin-left: 0.5em;
+                    font-weight: bold;
+                    line-height: 300%;
+
+                    a {
+                        border-radius: 5px 5px 0px 0px;
+                        padding: 0.5em;
+                    }
+
+                    a:hover {
+                        background: #FFF;
+                        color: $primary-color;;
+                    }
+                }
+            }
+        }
+    }
+}
+
+div#content {
+    width: 990px;
+    margin: 0 auto;
+    padding: 1em 0;
+}

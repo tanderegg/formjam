@@ -12,14 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require foundation
-//= require turbolinks
+//= require ./vendor/handlebars
 //= require ./vendor/ember
-//= require_tree ./lib
-//= require app/app
-//= require_tree ./app/models
-//= require_tree ./app/controllers
-//= require_tree ./app/views
-//= require_tree ./app/helpers
-//= require_tree ./app/templates
+//= require ./vendor/ember-data
+//= require_self
+//= require formjam
+Formjam = Ember.Application.create();
 //= require_tree .
