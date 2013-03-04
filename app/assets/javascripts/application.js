@@ -16,6 +16,6 @@
 //= require ./vendor/ember
 //= require ./vendor/ember-data
 //= require_self
-//= require formjam
-Formjam = Ember.Application.create();
 //= require_tree .
+Formjam = Ember.Application.create();
+//= require formjam

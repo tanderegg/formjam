@@ -86,4 +86,23 @@ div#content {
     width: 990px;
     margin: 0 auto;
     padding: 1em 0;
+
+    h1, h2, h3, h4, h5 {
+        margin-bottom: 0.5em;
+    }
+}
+
+.form-schema {
+    ul {
+        list-style-type: none;
+        width: 100%;
+
+        li {
+            border: 1px dashed #CCC;
+            padding: 1em;
+            margin-bottom: 1em;
+            width: 100%;
+            display: block;
+        }
+    }
 }

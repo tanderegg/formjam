@@ -1,0 +1,24 @@
+<div id="wrapper">
+    <header id="site-header">
+        <div id="site-header-content">
+            {{#linkTo "index"}}
+            <h1>Formjam</h1>
+            {{/linkTo}}
+            <nav id="actions">
+                <ul>
+                    {{#if isNewForm }}
+                        <li>{{#linkTo "form-fields.new"}}+ Add{{/linkTo}}</li>
+                        <li>{{#linkTo "forms.update" }}Save{{/linkTo}}</a></li>
+                    {{/if}}
+                    <li>{{#linkTo "forms.new" }}New{{/linkTo}}</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div id="content" class="container">
+        <div id="content-wrapper">
+            {{ outlet }}
+        </div>
+    </div>
+</div>

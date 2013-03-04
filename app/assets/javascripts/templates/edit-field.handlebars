@@ -1,0 +1,9 @@
+{{#if view.isEditing }}
+    {{view Ember.TextField valueBinding="view.value" propagatesEvents=true}}
+{{else}}
+    {{#if view.value}}
+        {{ view.value }}
+    {{else}}
+        <span class="no-name">empty {{ view.isEditing }} </span>
+    {{/if}}
+{{/if}}

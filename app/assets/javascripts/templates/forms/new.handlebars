@@ -1,0 +1,14 @@
+<div class="form-schema">
+    <h2>{{ editable "content.title" }}</h2>
+
+    <ul>
+        {{#each content.fields}}
+            <li class="form-schema-element">
+                <label>{{ editable "label" }}</label>
+                {{ displayHTML }}
+            </li>
+        {{/each}}
+    </ul>
+</div>
+
+<button {{ action "addFormField" }}>Add New Question</button>
