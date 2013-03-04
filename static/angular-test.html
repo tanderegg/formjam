@@ -1,0 +1,160 @@
+<!doctype html>
+<html ng-app="buildForm">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">
+    <style type="text/css">
+      body {
+        padding:30px;
+      }
+    </style>
+      <script type="text/javascript">
+
+      var myApp = angular.module('buildForm',[]);
+
+      function FieldCtrl($scope) {
+          //some data
+          $scope.fields = [
+            {type:'input', label:'Just a little text', placeholder:"Yay this is prepopulated"},
+            {type:'textarea', label:'Lots of text', placeholder:"Yay this is prepopulated"},
+            {type:'choice', label:'Pick one',choices: ['ember.js','angular.js']},
+            {type:'choice', label:'Next Action Items',choices: ['code','drink','sleep']},
+          ];
+         // comment the next line to see some fixture data 
+         // $scope.fields = [];
+          $scope.addfield = function() {
+            data = {type:$scope.fieldType, label:$scope.fieldLabel}
+            if ($scope.fieldPlaceholder) 
+                {data.placeholder = $scope.fieldPlaceholder};
+            if ($scope.fieldChoices) 
+                {data.choices = $scope.fieldChoices.split(',')};
+            $scope.fields.push(data);
+          };
+          $scope.clear = function() {
+            $scope.fields = []
+          };
+
+          // Backs conditional template logic
+          $scope.asInput = function(field) {
+            console.log(field);
+            return field.type == 'input';
+          };
+          $scope.asTextarea = function(field) {
+            console.log(field);
+            return field.type == 'textarea';
+          };
+          $scope.asRadio = function(field) {
+            console.log(field);
+            return field.type == 'choice' && field.choices && field.choices.length <= 2;
+          };
+          $scope.asSelect = function(field) {
+            console.log(field);
+            return field.type == 'choice' && field.choices && field.choices.length > 2;
+          };
+
+          //similar
+          $scope.formNotEmpty = function() {
+            return scope.fields.length > 0;
+          };
+
+        //leaving scope
+        }
+
+    // Whats a directive?
+    myApp.directive('ngIf', function() {
+        return {
+            link: function(scope, element, attrs) {
+                if(scope.$eval(attrs.ngIf)) {
+                    // remove '<div ng-if...></div>'
+                    element.replaceWith(element.children())
+                } else {
+                    element.replaceWith(' ')
+                }
+            }
+        }
+    });
+
+
+    </script>
+  </head>
+  <body>
+    <div>
+
+      <h1>Lets make a form.</h1>
+
+      <div ng-controller="FieldCtrl">
+<!--       <span>{{remaining()}} of {{fields.length}} remaining</span>
+      [ <a href="" ng-click="archive()">archive</a> ] -->
+
+      <label>Name your form:</label>
+      <input type="text" ng-model="formName" placeholder="Enter a name here">
+
+      <hr>
+      
+      <h3>Add a field.</h3>
+      <form ng-submit="addfield()">
+        <label>Field type</label>
+        <select ng-model="fieldType">
+               <option value='input'>Input</option>
+               <option value='textarea'>Text</option>
+               <option value='choice'>Choice</option>
+             </select><br>
+        <input type="text" ng-model="fieldLabel"  size="30"
+               placeholder="LABEL"><br>
+        <input type="text" ng-model="fieldPlaceholder"  size="30"
+               placeholder="PLACEHOLDER"><br>
+        <textarea type="text" ng-model="fieldChoices" size="60"
+               placeholder="CHOICES (optional, comma delimited)"></textarea><br>
+
+
+        <input class="btn-primary" type="submit" value="add">
+      </form>
+
+
+      <div>
+        <form submit="testSubmit()">
+          <h5> ** preview area ** </h5>[ <a href="" ng-click="clear()">clear fields</a> ]
+          <h1>{{formName}}</h1>
+          <div ng-repeat="field in fields">
+            <!-- 
+            Conditional templates that refernce custom directive
+             - http://stackoverflow.com/questions/14077471/conditional-logic-in-angularjs-template 
+            -->
+            <div ng-if="asInput(field)">
+              <label for="field_{{field.$$hashKey}}">{{field.label}}</label>
+              <input id="field_{{field.$$hashKey}}" placeholder="{{field.placeholder}}">
+            </div>
+
+            <div ng-if="asTextarea(field)">
+              <label for="field_{{field.$$hashKey}}">{{field.label}}</label>
+              <textarea id="field_{{field.$$hashKey}}" placeholder="{{field.placeholder}}"></textarea>
+            </div>            
+
+            <div ng-if="asRadio(field)" >{{field.label}}
+              <label for="field_{{field.$$hashKey}}" name="{{field.label}}"  class="radio" ng-repeat="choice in field.choices">
+                <input  type="radio" value="{{choice}}">{{choice}}
+              </label>
+            </div> 
+
+            <div ng-if="asSelect(field)">
+              <label for="field_{{field.$$hashKey}}">{{field.label}}</label>
+              <select id="field_{{field.$$hashKey}}" placeholder="{{field.placeholder}}">
+                <option ng-repeat="choice in field.choices" value="{{choice}}">{{choice}}</option>
+              </select>
+            </div>    
+
+              <br>
+        </div>
+
+         <input class="btn-primary" ng-if="formNotEmpty()" type="submit" value="Test Submit">
+
+      </form>
+    </div>
+
+    </div>
+
+
+  </body>
+
+</html>
+
